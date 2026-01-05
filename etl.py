@@ -16,7 +16,7 @@ def transform_data(data):
     """Transforms the data by cleaning and adding new features."""
     try:
         # Drop rows with missing values
-        data_cleaned = data.dropna()
+        data_cleaned = data.dropna().copy()
         
         # Add a new column for Tax (assuming a flat 10% tax rate on salary)
         data_cleaned['tax'] = data_cleaned['salary'] * 0.1
@@ -48,6 +48,6 @@ def etl_process(input_file, output_file):
             load_data(transformed_data, output_file)
 
 if __name__ == "__main__":
-    input_file = 'input_data.csv'
+    input_file = 'data/input_data.csv'
     output_file = 'output_data.csv'
     etl_process(input_file, output_file)
